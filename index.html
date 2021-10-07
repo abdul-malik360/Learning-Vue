@@ -1,0 +1,83 @@
+<!-- used doc instead of ! -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Vue</title>
+
+    <!-- paste vue cdn link -->
+    <!-- changed the link to @recording time version -->
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+
+    <!-- import styles -->
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1>Hello Vue</h1>
+
+    <div id="app">
+      <!-- <h2>I am the template now</h2> -->
+      <!-- <p>{{ title }} - {{ author }} - {{ age }}</p> -->
+      <p>{{ age }}</p>
+
+      <div v-if="showBooks">
+        <!-- <p>{{ title }} - {{ author }} - {{ age }}</p> -->
+        <!-- <p>{{ books[0].title }} - {{ books[0].author }}</p>
+        <p>{{ books[1].title }} - {{ books[1].author }}</p>
+        <p>{{ books[2].title }} - {{ books[2].author }}</p> -->
+
+        <ul>
+          <li v-for="book in books">
+            <img :src="book.img" :alt="book.title" />
+            <h3>{{ book.title }}</h3>
+            <p>{{ book.author }}</p>
+          </li>
+        </ul>
+      </div>
+
+      <button @click="toggleShowBooks">
+        <span v-if="showBooks">Hide Books</span>
+        <!-- <span v-if="showBooks == false">Show Books 1</span> -->
+        <!-- <span v-if="!showBooks">Show Books 2</span> -->
+        <span v-else>Show Books 3</span>
+      </button>
+
+      <div v-show="showBooks">Currently Showing Books</div>
+
+      <!-- <button v-on:click="age++">Increase Age</button>
+      <button v-on:click="age--">Decrease Age</button> -->
+      <!-- replacing 'v-on:' with '@' symbol, can be replaced for any event  -->
+      <button @click="age++">Increase Age</button>
+      <button @click="age--">Decrease Age</button>
+
+      <!-- <div @click="title = 'something else' ">Change book title</div> -->
+      <!-- <button @click="changeTitle()">Change book title</button> -->
+      <button @click="changeTitle('Oathbringer')">Change book title</button>
+      <br />
+      <br />
+      <br />
+
+      <!-- mouse events -->
+      <!-- <div class="box" @mouseover="handleEvent">mouseover (enter)</div> -->
+      <div class="box" @mouseover="handleEvent($event, 5)">
+        mouseover (enter)
+      </div>
+      <div class="box" @mouseleave="handleEvent">mouseleave</div>
+      <div class="box" @dblclick="handleEvent">double click</div>
+      <div class="box" @mousemove="handleMousemove">
+        position - {{ x }} {{ y }}
+      </div>
+
+      <br />
+      <br />
+      <br />
+
+      <!-- attribute binding -->
+      <!-- <a v-bind:href="url">net ninja</a> -->
+      <a :href="url">net ninja</a>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
